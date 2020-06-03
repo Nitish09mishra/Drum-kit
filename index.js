@@ -16,6 +16,7 @@ for(var i=0; i<length; i++) {
 	document.querySelectorAll(".drum")[i].addEventListener("click", function createSound() {
 			var letter = this.textContent;
 			sounds (letter);
+			buttonAnimation(letter);
 	}); 
 //on above we are not using paranthesis[()] because we want the function to happen after the button is clicked...
 }
@@ -23,6 +24,7 @@ for(var i=0; i<length; i++) {
 // keyboard pressed....
 document.addEventListener("keypress", (letter) => {
 	sounds(letter.key);
+	buttonAnimation(letter.key);
 })
 
 function sounds (letter) {
@@ -58,4 +60,14 @@ function sounds (letter) {
 				default: console.log(letter);
 			}
 
-}	
+}
+
+// adding animation to pressed buttons....
+function buttonAnimation(currentKey) {
+	var activeButton = document.querySelector("." + currentKey);
+	activeButton.classList.add("pressed");
+
+	setTimeout(() => {
+		activeButton.classList.remove("pressed");
+	}, 200)
+}
